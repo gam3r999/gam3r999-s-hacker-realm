@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gam3r999's Hacker Page</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #000;
+            color: #0f0;
+            font-family: "Courier New", Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            padding: 2em 1em;
+        }
+
+        h1 {
+            font-size: 3em;
+            position: relative;
+            color: #0f0;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+            20% { text-shadow: -2px -2px #ff00ff, 2px 2px #00ffff; }
+            40% { text-shadow: 2px 2px #ff00ff, -2px -2px #00ffff; }
+            60% { text-shadow: -2px 2px #ff00ff, 2px -2px #00ffff; }
+            80% { text-shadow: 2px -2px #ff00ff, -2px 2px #00ffff; }
+            100% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #0f0;
+            margin: 0.5em 0 1em;
+        }
+
+        .repos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2em;
+        }
+
+        .repos a {
+            display: block;
+            margin: 0.2em 0;
+            color: #0f0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .repos a:hover {
+            color: #ff0;
+            text-shadow: 0 0 5px #ff0, 0 0 10px #ff0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.8em;
+            color: #0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>GΛM3R999</h1>
+    <p>Welcome to my hacker realm.</p>
+
+    <div class="repos" id="repo-list">
+        <h2>My GitHub Repositories:</h2>
+        <p>Loading...</p>
+    </div>
+
+    <footer>&copy; 2025 Gam3r999. All rights reserved.</footer>
+
+    <canvas id="matrix"></canvas>
+
+    <script>
+        // Fetch GitHub repositories
+        async function loadRepos() {
+            const repoList = document.getElementById("repo-list");
+            try {
+                const response = await fetch("https://api.github.com/users/gam3r999/repos");
+                const repos = await response.json();
+                repoList.innerHTML = "<h2>My GitHub Repositories:</h2>";
+                repos.forEach(repo => {
+                    const link = document.createElement("a");
+                    link.href = repo.html_url;
+                    link.target = "_blank";
+                    link.textContent = repo.name;
+                    repoList.appendChild(link);
+                });
+            } catch (err) {
+                repoList.innerHTML = "<p>Failed to load repositories.</p>";
+                console.error(err);
+            }
+        }
+        loadRepos();
+
+        // Matrix effect
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0f0";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
