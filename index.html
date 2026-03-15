@@ -7,7 +7,7 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #000;
             color: #0f0;
             font-family: "Courier New", Courier, monospace;
@@ -60,6 +60,141 @@
             text-shadow: 0 0 5px #ff0, 0 0 10px #ff0;
         }
 
+        /* ── TECH STACK ── */
+        .tech-stack {
+            width: 100%;
+            max-width: 860px;
+            margin-bottom: 2.5em;
+            text-align: center;
+        }
+
+        .tech-stack h2 {
+            color: #0f0;
+            font-size: 1.4em;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.2em;
+            text-shadow: 0 0 8px #0f0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .tech-stack h2::before,
+        .tech-stack h2::after {
+            content: "//";
+            color: #00ffff;
+            margin: 0 0.5em;
+            opacity: 0.7;
+        }
+
+        .stack-section {
+            margin-bottom: 1em;
+        }
+
+        .stack-label {
+            font-size: 0.7em;
+            color: #00ffff;
+            letter-spacing: 0.25em;
+            margin-bottom: 0.5em;
+            opacity: 0.8;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 12px;
+            border: 1px solid #0f0;
+            font-size: 0.75em;
+            font-family: "Courier New", Courier, monospace;
+            letter-spacing: 0.08em;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: default;
+            position: relative;
+            transition: all 0.25s ease;
+            background: transparent;
+            color: #0f0;
+            box-shadow: inset 0 0 0px #0f0, 0 0 0px #0f0;
+        }
+
+        .badge::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #0f0;
+            opacity: 0;
+            transition: opacity 0.25s;
+            z-index: 0;
+        }
+
+        .badge span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge svg, .badge img {
+            width: 14px;
+            height: 14px;
+            position: relative;
+            z-index: 1;
+            filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(90deg);
+        }
+
+        .badge:hover {
+            color: #000;
+            border-color: #0f0;
+            box-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+        }
+
+        .badge:hover::before {
+            opacity: 1;
+        }
+
+        .badge:hover svg, .badge:hover img {
+            filter: brightness(0);
+        }
+
+        /* Accent colors per category */
+        .badge.cyan {
+            border-color: #00ffff;
+            color: #00ffff;
+        }
+        .badge.cyan::before { background: #00ffff; }
+        .badge.cyan:hover { color: #000; box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+        .badge.cyan svg, .badge.cyan img { filter: brightness(0) invert(1) sepia(1) saturate(10) hue-rotate(170deg); }
+
+        .badge.magenta {
+            border-color: #ff00ff;
+            color: #ff00ff;
+        }
+        .badge.magenta::before { background: #ff00ff; }
+        .badge.magenta:hover { color: #000; box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+        .badge.magenta svg, .badge.magenta img { filter: brightness(0) invert(1) sepia(1) saturate(10) hue-rotate(270deg); }
+
+        .badge.yellow {
+            border-color: #ffff00;
+            color: #ffff00;
+        }
+        .badge.yellow::before { background: #ffff00; }
+        .badge.yellow:hover { color: #000; box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00; }
+        .badge.yellow svg, .badge.yellow img { filter: brightness(0) invert(1) sepia(1) saturate(10) hue-rotate(50deg); }
+
+        /* Divider */
+        .divider {
+            width: 100%;
+            max-width: 860px;
+            border: none;
+            border-top: 1px solid #0f04;
+            margin: 1em 0 2em;
+        }
+
         canvas {
             position: fixed;
             top: 0;
@@ -71,12 +206,128 @@
             margin-top: auto;
             font-size: 0.8em;
             color: #0f0;
+            padding-top: 2em;
         }
     </style>
 </head>
 <body>
     <h1>GΛM3R999</h1>
     <p>Welcome to my hacker realm.</p>
+
+    <!-- ── TECH STACK SECTION ── -->
+    <div class="tech-stack">
+        <h2>TECH STACK</h2>
+
+        <div class="stack-section">
+            <div class="stack-label">[ LANGUAGES ]</div>
+            <div class="badges">
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.57 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.65 5.96 5 7.9 5c.75 0 1.41.07 1.97.2.57.14.99.27 1.28.39l-.4 2.55-.92-.35c-.26-.08-.6-.12-1.02-.12-1.02.01-1.8.32-2.35.92-.54.6-.82 1.52-.83 2.76 0 1.18.27 2.08.8 2.71.53.61 1.31.93 2.35.94.41 0 .77-.04 1.07-.11l.71-.22zM13.89 19l-.58-3.21c-.1-.49-.24-.82-.42-1-.17-.18-.46-.27-.87-.27H11V19H8V5.13c.68-.1 1.69-.18 3.04-.22 1.37-.04 2.36.14 2.99.53.63.39 1.13.93 1.5 1.62.26.49.39 1.04.39 1.64 0 1.38-.72 2.38-2.16 3.02.58.23 1.01.6 1.3 1.1.28.5.53 1.25.74 2.26L17 19h-3.11zm-2.42-6.42h.76c.74 0 1.28-.13 1.62-.4.34-.28.51-.67.51-1.18 0-.46-.16-.83-.47-1.11-.31-.27-.85-.41-1.63-.4-.35 0-.63.01-.79.04v3.05z"/></svg>
+                    <span>C++</span>
+                </div>
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.57 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.65 5.96 5 7.9 5c.75 0 1.41.07 1.97.2.57.14.99.27 1.28.39l-.4 2.55-.92-.35c-.26-.08-.6-.12-1.02-.12-1.02.01-1.8.32-2.35.92-.54.6-.82 1.52-.83 2.76 0 1.18.27 2.08.8 2.71.53.61 1.31.93 2.35.94.41 0 .77-.04 1.07-.11l.71-.22zM13.89 19l-.58-3.21c-.1-.49-.24-.82-.42-1-.17-.18-.46-.27-.87-.27H11V19H8V5.13c.68-.1 1.69-.18 3.04-.22 1.37-.04 2.36.14 2.99.53.63.39 1.13.93 1.5 1.62.26.49.39 1.04.39 1.64 0 1.38-.72 2.38-2.16 3.02.58.23 1.01.6 1.3 1.1.28.5.53 1.25.74 2.26L17 19h-3.11zm-2.42-6.42h.76c.74 0 1.28-.13 1.62-.4.34-.28.51-.67.51-1.18 0-.46-.16-.83-.47-1.11-.31-.27-.85-.41-1.63-.4-.35 0-.63.01-.79.04v3.05z"/></svg>
+                    <span>C#</span>
+                </div>
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.57 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.65 5.96 5 7.9 5c.75 0 1.41.07 1.97.2.57.14.99.27 1.28.39l-.4 2.55-.92-.35c-.26-.08-.6-.12-1.02-.12-1.02.01-1.8.32-2.35.92-.54.6-.82 1.52-.83 2.76 0 1.18.27 2.08.8 2.71.53.61 1.31.93 2.35.94.41 0 .77-.04 1.07-.11l.71-.22zM13.89 19l-.58-3.21c-.1-.49-.24-.82-.42-1-.17-.18-.46-.27-.87-.27H11V19H8V5.13c.68-.1 1.69-.18 3.04-.22 1.37-.04 2.36.14 2.99.53.63.39 1.13.93 1.5 1.62.26.49.39 1.04.39 1.64 0 1.38-.72 2.38-2.16 3.02.58.23 1.01.6 1.3 1.1.28.5.53 1.25.74 2.26L17 19h-3.11zm-2.42-6.42h.76c.74 0 1.28-.13 1.62-.4.34-.28.51-.67.51-1.18 0-.46-.16-.83-.47-1.11-.31-.27-.85-.41-1.63-.4-.35 0-.63.01-.79.04v3.05z"/></svg>
+                    <span>C</span>
+                </div>
+                <div class="badge yellow">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14.25 14.25c0 .75-.07 1.31-.22 1.69a1.44 1.44 0 0 1-.72.8 2.6 2.6 0 0 1-1.31.28 2.7 2.7 0 0 1-1.33-.28 1.47 1.47 0 0 1-.71-.8 4.25 4.25 0 0 1-.21-1.56v-.47h-1.9v.47c0 1.06.14 1.88.42 2.47a3.3 3.3 0 0 0 1.4 1.5 4.9 4.9 0 0 0 2.36.5 5.4 5.4 0 0 0 2.25-.41 3.34 3.34 0 0 0 1.46-1.44c.35-.7.52-1.64.52-2.79v-8.2h-1.99v8.24zm-4.5-2.5h1.9V5.75h1.87V4H8V5.75h1.75v6z"/></svg>
+                    <span>JavaScript</span>
+                </div>
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v18H3V3zm10.71 14.29l-3.49-3.5v2.21H8.5V11.5h5.5v1.5h-2.21l3.5 3.5-1.58 1.29zM12 5C8.14 5 5 8.14 5 12s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm0 12.5a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/></svg>
+                    <span>TypeScript</span>
+                </div>
+                <div class="badge yellow">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
+                    <span>Python</span>
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <span>HTML5</span>
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <span>CSS3</span>
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h2V3H3v2zm0 8h2v-2H3v2zm4 8h2v-2H7v2zM3 9h2V7H3v2zm10-6h-2v2h2V3zm6 0v2h2V3h-2zM5 21v-2H3v2h2zM3 17h2v-2H3v2zm8 4h2v-2h-2v2zm4-8h2v2h-2v-2zm0 8h2v-2h-2v2zm4-12h2V7h-2v2zm0 8h2v-2h-2v2zM7 3H5v2h2V3zm0 16H5v2h2v-2zm2-16H7v2h2V3zm6 4h-2v2h2V7zm-2 6h2v-2h-2v2zm0-10h2V3h-2v4z"/></svg>
+                    <span>Markdown</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stack-section" style="margin-top:1em;">
+            <div class="stack-label">[ FRAMEWORKS & TOOLS ]</div>
+            <div class="badges">
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.11c1.03 0 1.87.84 1.87 1.89 0 1-.84 1.85-1.87 1.85-1.03 0-1.87-.85-1.87-1.85 0-1.05.84-1.89 1.87-1.89M7.37 20c.63.38 2.01-.2 3.6-1.7-.52-.59-1.03-1.23-1.51-1.9-.82-.08-1.63-.2-2.4-.36-.51 2.14-.32 3.61.31 3.96m.71-5.74l-.29-.51c-.11.29-.22.58-.29.86.27.06.57.11.88.16l-.3-.51m6.54-.76l.81-1.5-.81-1.5c-.3-.53-.62-1-.91-1.47C13.17 9 12.6 9 12 9s-1.17 0-1.71.03c-.29.47-.61.94-.91 1.47L8.57 12l.81 1.5c.3.53.62 1 .91 1.47.54.03 1.11.03 1.71.03s1.17 0 1.71-.03c.29-.47.61-.94.91-1.47M12 6.78c-.19.22-.39.45-.59.72h1.18c-.2-.27-.4-.5-.59-.72m0 10.44c.19-.22.39-.45.59-.72h-1.18c.2.27.4.5.59.72M16.62 4c-.62-.38-2 .2-3.59 1.7.52.59 1.03 1.23 1.51 1.9.82.08 1.63.2 2.4.36.51-2.14.32-3.61-.32-3.96m-.7 5.74l.29.51c.11-.29.22-.58.29-.86-.27-.06-.57-.11-.88-.16l.3.51m1.45-7.05c1.47.84 1.63 3.05 1.01 5.63 2.54.75 4.37 1.99 4.37 3.68s-1.83 2.93-4.37 3.68c.62 2.58.46 4.79-1.01 5.63-1.46.84-3.45-.12-5.38-1.95-1.93 1.83-3.92 2.79-5.38 1.95-1.47-.84-1.63-3.05-1.01-5.63-2.54-.75-4.37-1.99-4.37-3.68s1.83-2.93 4.37-3.68c-.62-2.58-.46-4.79 1.01-5.63 1.46-.84 3.45.12 5.38 1.95 1.93-1.83 3.92-2.79 5.38-1.95M17.08 12c.34.75.64 1.5.89 2.26 2.1-.63 3.28-1.53 3.28-2.26s-1.18-1.63-3.28-2.26c-.25.76-.55 1.51-.89 2.26M6.92 12c-.34-.75-.64-1.5-.89-2.26-2.1.63-3.28 1.53-3.28 2.26s1.18 1.63 3.28 2.26c.25-.76.55-1.51.89-2.26m9 2.26l-.3.51c.31-.05.61-.1.88-.16-.07-.28-.18-.57-.29-.86l-.29.51m-2.89 4.04c1.59 1.5 2.97 2.08 3.6 1.7.63-.35.82-1.82.31-3.96-.77.16-1.58.28-2.4.36-.48.67-.99 1.31-1.51 1.9M8.08 9.74l.3-.51c-.31.05-.61.1-.88.16.07.28.18.57.29.86l.29-.51m2.89-4.04C9.38 4.2 8 3.62 7.37 4c-.63.35-.82 1.82-.31 3.96.77-.16 1.58-.28 2.4-.36.48-.67.99-1.31 1.51-1.9z"/></svg>
+                    <span>React</span>
+                </div>
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                    <span>Tailwind CSS</span>
+                </div>
+                <div class="badge yellow">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    <span>Flask</span>
+                </div>
+                <div class="badge cyan">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 5.714h2.119a.186.186 0 00.185-.185V11.88a.186.186 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.888c0 .101.083.184.185.184m-2.954-2.715h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185M19.21 9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185h2.118a.186.186 0 00.186-.186V9.006zm-2.954-2.716h2.118a.186.186 0 00.186-.185V4.217a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m2.954 5.43h-2.118a.185.185 0 00-.185.184v1.888c0 .102.082.185.185.185h2.118a.186.186 0 00.186-.185v-1.888a.186.186 0 00-.186-.184"/></svg>
+                    <span>Docker</span>
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"/></svg>
+                    <span>Vercel</span>
+                </div>
+                <div class="badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"/></svg>
+                    <span>Render</span>
+                </div>
+                <div class="badge magenta">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C.150 12.888.726 14 1.786 14H9.05l.113 8.927c.015.987 1.261 1.41 1.875.637l9.262-11.65c.613-.838.037-1.95-1.023-1.95H12.1L11.9 1.036z"/></svg>
+                    <span>Supabase</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stack-section" style="margin-top:1em;">
+            <div class="stack-label">[ CREATIVE TOOLS ]</div>
+            <div class="badges">
+                <div class="badge magenta">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm-1.5-7.5l-2.5 2.5 1.5 1.5 2.5-2.5 2.5 2.5 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5-2.5 2.5-2.5-2.5-1.5 1.5 2.5 2.5z"/></svg>
+                    <span>CapCut</span>
+                </div>
+                <div class="badge magenta">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm2 0v12h16V6H4zm5.5 8.5l-2-3 1.5-2.5h5l1.5 2.5-2 3h-4z"/></svg>
+                    <span>Adobe Premiere Pro</span>
+                </div>
+                <div class="badge magenta">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+                    <span>Adobe Photoshop</span>
+                </div>
+                <div class="badge magenta">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+                    <span>Canva</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="stack-section" style="margin-top:1em;">
+            <div class="stack-label">[ VERSION CONTROL ]</div>
+            <div class="badges">
+                <div class="badge yellow">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    <span>GitHub</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
 
     <div class="repos" id="repo-list">
         <h2>My GitHub Repositories:</h2>
