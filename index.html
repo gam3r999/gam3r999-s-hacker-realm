@@ -339,6 +339,56 @@
     <canvas id="matrix"></canvas>
 
     <script>
+        // ── DEVTOOLS DETECTION & RICKROLL ──────────────────────────────────────
+        (function () {
+            const RICKROLL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+            let devtoolsOpen = false;
+
+            function rickroll() {
+                if (!devtoolsOpen) {
+                    devtoolsOpen = true;
+                    window.location.replace(RICKROLL);
+                }
+            }
+
+            // METHOD 1: window size delta (most reliable for undocked devtools)
+            const THRESHOLD = 160;
+            setInterval(function () {
+                if (
+                    window.outerWidth - window.innerWidth > THRESHOLD ||
+                    window.outerHeight - window.innerHeight > THRESHOLD
+                ) {
+                    rickroll();
+                }
+            }, 500);
+
+            // METHOD 2: console.log object toString trick
+            // When devtools is open, inspecting an object calls its toString
+            const detector = Object.defineProperty({}, "_", {
+                get: function () {
+                    rickroll();
+                }
+            });
+            // Runs each time the console re-renders this log (i.e. when opened)
+            setInterval(function () {
+                console.clear();
+                console.log("%c ", detector);
+            }, 1000);
+
+            // METHOD 3: debugger timing — opening devtools slows execution significantly
+            (function devtoolsTimingCheck() {
+                const start = performance.now();
+                // eslint-disable-next-line no-debugger
+                debugger;
+                const elapsed = performance.now() - start;
+                if (elapsed > 100) {
+                    rickroll();
+                }
+                setTimeout(devtoolsTimingCheck, 1000);
+            })();
+        })();
+        // ──────────────────────────────────────────────────────────────────────
+
         // Fetch GitHub repositories
         async function loadRepos() {
             const repoList = document.getElementById("repo-list");
